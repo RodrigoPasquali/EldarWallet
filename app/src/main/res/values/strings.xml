@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">EldarWallet</string>
-    <string name="saldo">Saldo</string>
+    <string name="balance">Saldo</string>
     <string name="n_cuenta">N°Cuenta</string>
 </resources>

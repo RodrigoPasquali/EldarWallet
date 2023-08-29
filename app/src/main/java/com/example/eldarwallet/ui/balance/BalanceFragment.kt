@@ -1,4 +1,4 @@
-package com.example.eldarwallet.ui
+package com.example.eldarwallet.ui.balance
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.eldarwallet.R
 
-class SaldoFragment : Fragment() {
+class BalanceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_saldo, container, false)
+        return inflater.inflate(R.layout.fragment_balance, container, false)
     }
 }

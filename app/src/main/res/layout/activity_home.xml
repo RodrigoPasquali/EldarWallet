@@ -9,7 +9,7 @@
     android:padding="5dp">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/saldoContainer"
+        android:id="@+id/balanceContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="10dp"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_percent="0.2"
-        android:name="com.example.eldarwallet.ui.SaldoFragment"
-        tools:layout="@layout/fragment_saldo"/>
+        android:name="com.example.eldarwallet.ui.balance.BalanceFragment"
+        tools:layout="@layout/fragment_balance"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
