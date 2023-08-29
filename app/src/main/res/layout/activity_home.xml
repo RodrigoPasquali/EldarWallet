@@ -8,7 +8,7 @@
     tools:context=".ui.HomeActivity"
     android:padding="10dp">
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/saldoContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,6 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.2"/>
+        app:layout_constraintHeight_percent="0.2"
+        android:name="com.example.eldarwallet.ui.SaldoFragment"
+        tools:layout="@layout/fragment_saldo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
