@@ -14,9 +14,9 @@ class BalanceViewModel(
     private var _balance = MutableLiveData<Long?>()
     var balance: LiveData<Long?> = _balance
 
-    fun getBalance(countNumber: String) {
+    fun getBalanceFromAccount(accountNumber: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            _balance.postValue(getBalance(countNumber.toLong()))
+            _balance.postValue(getBalance(accountNumber))
         }
     }
 }

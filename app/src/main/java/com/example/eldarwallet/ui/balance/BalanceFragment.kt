@@ -16,7 +16,7 @@ class BalanceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBalanceBinding.inflate(inflater, container, false)
 
         balanceViewModel =
@@ -32,7 +32,7 @@ class BalanceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observers()
 
-        balanceViewModel.getBalance("1001")
+        balanceViewModel.getBalanceFromAccount(1001)
     }
 
     private fun observers() {
