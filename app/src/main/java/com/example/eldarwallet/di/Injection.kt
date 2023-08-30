@@ -7,9 +7,9 @@ import com.example.eldarwallet.infraestructure.database.AppDatabase
 import com.example.eldarwallet.infraestructure.repository.AccountRepositoryRoom
 
 object Injection {
-    fun provideGetBalance(context: Context) = GetBalance(provideRoomAccountRepository(context))
+    fun provideGetBalance(context: Context) = GetBalance(provideAccountRepositoryRoom(context))
 
-    private fun provideRoomAccountRepository(context: Context): AccountRepository {
+    private fun provideAccountRepositoryRoom(context: Context): AccountRepository {
         return AccountRepositoryRoom(provideAppDataBase(context))
     }
 
