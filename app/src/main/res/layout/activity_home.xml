@@ -3,21 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeActivity"
-    android:padding="5dp">
+    tools:context=".ui.HomeActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/balanceContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:name="com.example.eldarwallet.ui.balance.BalanceFragment"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_percent="0.2"
-        android:name="com.example.eldarwallet.ui.balance.BalanceFragment"
         tools:layout="@layout/fragment_balance"/>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/cardsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:name="com.example.eldarwallet.ui.card.CardFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balanceContainer"
+        app:layout_constraintHeight_percent="0.4"
+        tools:layout="@layout/fragment_card"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
