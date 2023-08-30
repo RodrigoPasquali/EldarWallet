@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.example.eldarwallet.databinding.FragmentCardBinding
+import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.domain.model.Card
 
 class CardFragment : Fragment() {
     private lateinit var binding: FragmentCardBinding
     private lateinit var viewPagerAdapter: ViewPagerCardAdapter
+    private lateinit var cardViewModel: CardViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,13 +24,31 @@ class CardFragment : Fragment() {
     ): View {
         binding = FragmentCardBinding.inflate(inflater, container, false)
 
+        cardViewModel =
+            ViewModelProvider(
+                this,
+                CardViewModelFactory(Injection.provideGetCards(requireActivity().applicationContext))
+            ).get(CardViewModel::class.java)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observers()
+        cardViewModel.getCardsFromAccount(1001)
         setupAdapter()
+    }
+
+    private fun observers() {
+        cardViewModel.cards.observe(viewLifecycleOwner) {
+            updateCards(it)
+        }
+    }
+
+    private fun updateCards(cards: List<Card>) {
+        viewPagerAdapter.setItem(cards)
     }
 
     private fun setupAdapter() {
@@ -37,8 +58,6 @@ class CardFragment : Fragment() {
             adapter = viewPagerAdapter
             setupCarrousel(this)
         }
-
-        viewPagerAdapter.setItem(getDummyCards())
     }
 
     private fun setupCarrousel(carrousel: ViewPager2) {
@@ -64,12 +83,4 @@ class CardFragment : Fragment() {
             }
         }
     }
-
-    private fun getDummyCards() = listOf(
-        Card(4100000000000000, "Santander", 123, "01/23"),
-        Card(4200000000000000, "Galicia", 234, "02/23"),
-        Card(5100000000000000, "BBVA", 345, "03/23"),
-        Card(5200000000000000, "Nacion", 456, "04/23"),
-        Card(3100000000000000, "Provincia", 567, "05/23")
-    )
 }
