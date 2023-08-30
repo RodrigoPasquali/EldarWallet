@@ -42,6 +42,6 @@ class BalanceFragment : Fragment() {
     }
 
     private fun updateBalance(balance: Long?) {
-        binding.balance.text = balance.toString()
+        binding.balance.text = "$ " + balance.toString()
     }
 }
