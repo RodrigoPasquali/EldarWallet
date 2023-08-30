@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eldarwallet.databinding.CardItemBinding
 import com.example.eldarwallet.domain.model.Card
+import com.example.eldarwallet.domain.model.CardBrand
 
 class ViewPagerCardAdapter: RecyclerView.Adapter<ViewPagerCardAdapter.CardViewHolder>() {
     var list: List<Card> = listOf()
@@ -25,7 +26,7 @@ class ViewPagerCardAdapter: RecyclerView.Adapter<ViewPagerCardAdapter.CardViewHo
         holder.company.text = card.company
         holder.number.text = card.number.toString()
         holder.expirationDate.text = card.expirationDate
-        holder.type.text = card.type
+        holder.type.text = getCardBrand(card.number)
     }
 
     fun setItem(list: List<Card>) {
@@ -34,6 +35,10 @@ class ViewPagerCardAdapter: RecyclerView.Adapter<ViewPagerCardAdapter.CardViewHo
     }
 
     override fun getItemCount(): Int = list.size
+
+    private fun getCardBrand(cardNumber: Long): String {
+        return CardBrand.getBrand(cardNumber).toString().replace("_", " ")
+    }
 
     inner class CardViewHolder(binding: CardItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val company: TextView = binding.company

@@ -66,10 +66,10 @@ class CardFragment : Fragment() {
     }
 
     private fun getDummyCards() = listOf(
-        Card(1000000000000000, "Santander", 123, "01/23", "VISA"),
-        Card(2000000000000000, "Galicia", 234, "02/23", "VISA"),
-        Card(3000000000000000, "BBVA", 345, "03/23", "MASTERCARD"),
-        Card(4000000000000000, "Nacion", 456, "04/23", "MASTERCARD"),
-        Card(5000000000000000, "Provincia", 567, "05/23", "AMERICAN EXPRESS")
+        Card(4100000000000000, "Santander", 123, "01/23"),
+        Card(4200000000000000, "Galicia", 234, "02/23"),
+        Card(5100000000000000, "BBVA", 345, "03/23"),
+        Card(5200000000000000, "Nacion", 456, "04/23"),
+        Card(3100000000000000, "Provincia", 567, "05/23")
     )
 }
