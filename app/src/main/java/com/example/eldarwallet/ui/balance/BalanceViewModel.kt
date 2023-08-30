@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 class BalanceViewModel(
     private val getBalance: GetBalance
 ) : ViewModel() {
-    private var _balance = MutableLiveData<Long>()
-    var balance: LiveData<Long> = _balance
+    private var _balance = MutableLiveData<Long?>()
+    var balance: LiveData<Long?> = _balance
 
     fun getBalance(countNumber: String) {
         viewModelScope.launch(Dispatchers.IO) {
