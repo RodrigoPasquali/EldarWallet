@@ -13,7 +13,7 @@ import com.example.eldarwallet.databinding.DialogCardRegistrationBinding
 import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.domain.model.Card
 
-class CardRegistrationDialog: DialogFragment() {
+class CardRegistrationDialog : DialogFragment() {
     private lateinit var binding: DialogCardRegistrationBinding
     private lateinit var viewModel: CardViewModel
 
@@ -33,7 +33,8 @@ class CardRegistrationDialog: DialogFragment() {
                 )
             ).get(CardViewModel::class.java)
 
-        return binding.root    }
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,16 +58,32 @@ class CardRegistrationDialog: DialogFragment() {
 
     private fun updateStatus(isValidRegistration: Boolean) {
         if (isValidRegistration) {
-            Toast.makeText(requireContext(), getString(R.string.successful_card_registration),Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.successful_card_registration),
+                Toast.LENGTH_SHORT
+            ).show()
             dismiss()
         } else {
-            Toast.makeText(requireContext(), getString(R.string.failed_card_registration),Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.failed_card_registration),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun onRegisterButton() {
         binding.registerButton.setOnClickListener {
-            viewModel.registerCard(getCardFromData())
+            if (!checkForEmptyFields()) {
+                viewModel.registerCard(getCardFromData())
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.on_empty_fields),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
@@ -81,6 +98,17 @@ class CardRegistrationDialog: DialogFragment() {
                 name.text.toString(),
                 lastname.text.toString()
             )
+        }
+    }
+
+    private fun checkForEmptyFields(): Boolean {
+        return with(binding) {
+            cardNumber.text.isEmpty()
+                    || company.text.isEmpty()
+                    || securityCode.text.isEmpty()
+                    || expirationDate.text.isEmpty()
+                    || name.text.isEmpty()
+                    ||lastname.text.isEmpty()
         }
     }
 
