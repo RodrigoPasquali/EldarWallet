@@ -4,4 +4,12 @@
     <string name="n_cuenta">N°Cuenta</string>
     <string name="cards">Tarjetas</string>
     <string name="add_card">Agregar tarjeta</string>
+    <string name="card_register">Registrar Tarjeta</string>
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="card_number">Nº Tarjeta</string>
+    <string name="expiration_date">Fecha de vencimiento date</string>
+    <string name="cvv">CVV</string>
+    <string name="bank">Banco</string>
+    <string name="register">Registrar</string>
 </resources>

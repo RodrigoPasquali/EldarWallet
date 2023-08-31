@@ -39,6 +39,7 @@ class CardFragment : Fragment() {
         observers()
         cardViewModel.getCardsFromAccount(1001)
         setupAdapter()
+        onAddCardButtonClick()
     }
 
     private fun observers() {
@@ -81,6 +82,12 @@ class CardFragment : Fragment() {
             } else {
                 page.translationY = offset
             }
+        }
+    }
+
+    private fun onAddCardButtonClick(){
+        binding.addCardButton.setOnClickListener {
+            CardRegistrationDialog.newInstance().show(childFragmentManager, "Dialog")
         }
     }
 }
