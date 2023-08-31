@@ -26,11 +26,11 @@ class LoginActivity : AppCompatActivity() {
                 )
             ).get(LoginViewModel::class.java)
 
-        observeLoginStauts()
+        observeLoginStatus()
         onLoginButtonClick()
     }
 
-    private fun observeLoginStauts() {
+    private fun observeLoginStatus() {
         loginViewModel.loginSuccessful.observe(this) {
             updateLoginStatus(it)
         }
