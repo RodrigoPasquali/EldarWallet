@@ -12,4 +12,7 @@ interface UserDao {
 
     @Query("select count(*) from user_table where email=:email and password=:password ")
     fun authenticate(email: String, password: String): Int
+
+    @Query("select * from user_table where email=:email")
+    fun getUser(email: String): User
 }

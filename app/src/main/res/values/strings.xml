@@ -19,4 +19,6 @@
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
     <string name="login">Login</string>
+    <string name="invalid_login">Usuario y/o contraseña invalidas</string>
+    <string name="complete_empty_fields">Por favor complete todos los campos</string>
 </resources>

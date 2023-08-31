@@ -23,7 +23,8 @@ class LoginActivity : AppCompatActivity() {
             ViewModelProvider(
                 this,
                 LoginViewModelFactory(
-                    Injection.provideLoginUser(applicationContext)
+                    Injection.provideLoginUser(applicationContext),
+                    Injection.provideGetUser(applicationContext)
                 )
             ).get(LoginViewModel::class.java)
 

@@ -3,6 +3,7 @@ package com.example.eldarwallet.di
 import android.content.Context
 import com.example.eldarwallet.domain.action.GetBalance
 import com.example.eldarwallet.domain.action.GetCards
+import com.example.eldarwallet.domain.action.GetUser
 import com.example.eldarwallet.domain.action.Login
 import com.example.eldarwallet.domain.action.SaveCard
 import com.example.eldarwallet.domain.repository.AccountRepository
@@ -21,6 +22,8 @@ object Injection {
     fun provideSaveCard(context: Context) = SaveCard(provideCardRepositoryRoom(context))
 
     fun provideLoginUser(context: Context) = Login(provideUserRepository(context))
+
+    fun provideGetUser(context: Context) = GetUser(provideUserRepository(context))
 
     private fun provideAccountRepositoryRoom(context: Context): AccountRepository {
         return AccountRepositoryRoom(provideAppDataBase(context))

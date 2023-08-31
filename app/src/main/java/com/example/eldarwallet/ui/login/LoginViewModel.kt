@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.eldarwallet.MyApp
+import com.example.eldarwallet.domain.action.GetUser
 import com.example.eldarwallet.domain.action.Login
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val login: Login
+    private val login: Login,
+    private val getUser: GetUser
 ) : ViewModel() {
     private var _loginSuccessful = MutableLiveData<Boolean>()
     var loginSuccessful: LiveData<Boolean> = _loginSuccessful
@@ -17,7 +20,7 @@ class LoginViewModel(
     fun tryLogin(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             if (loginUser(email, password)) {
-                onSuccessfulLogin()
+                onSuccessfulLogin(email)
             } else {
                 onFailureLogin()
             }
@@ -28,8 +31,9 @@ class LoginViewModel(
         return login(email, password) == USER_EXISTS
     }
 
-    private fun onSuccessfulLogin() {
+    private suspend fun onSuccessfulLogin(email: String) {
         _loginSuccessful.postValue(true)
+        MyApp.user = getUser(email)
     }
 
     private fun onFailureLogin() {
