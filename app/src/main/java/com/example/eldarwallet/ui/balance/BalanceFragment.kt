@@ -32,7 +32,7 @@ class BalanceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observers()
 
-        balanceViewModel.getBalanceFromAccount(1001)
+        balanceViewModel.getBalanceFromAccount(1000)
     }
 
     private fun observers() {

@@ -40,7 +40,7 @@ class CardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observers()
-        cardViewModel.getCardsFromAccount(1001)
+        cardViewModel.getCardsFromAccount(1000)
         setupAdapter()
         onAddCardButtonClick()
     }
@@ -58,7 +58,7 @@ class CardFragment : Fragment() {
 
     private fun onRegistrationCardObserver() {
         cardViewModel.registrationStatus.observe(viewLifecycleOwner) {
-            cardViewModel.getCardsFromAccount(1001)
+            cardViewModel.getCardsFromAccount(1000)
         }
     }
 

@@ -57,7 +57,7 @@ class CardRegistrationDialog: DialogFragment() {
         return with(binding) {
             Card(
                 cardNumber.text.toString().toLong(),
-                1001,
+                1000,
                 company.text.toString(),
                 securityCode.text.toString().toInt(),
                 expirationDate.text.toString(),

@@ -32,7 +32,7 @@
             android:id="@+id/numeroCuenta"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="1001"
+            android:text="1000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/numeroCuentaText"
