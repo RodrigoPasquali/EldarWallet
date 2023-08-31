@@ -15,4 +15,8 @@
     <string name="successful_card_registration">Se logro registrar la tarjeta con exito!</string>
     <string name="failed_card_registration">Operacion Fallida: Los datos de la tarjeta no coincides con los del usuario</string>
     <string name="on_empty_fields">Por favor complete todos los campos</string>
+    <string name="enter">Ingresar</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
 </resources>
