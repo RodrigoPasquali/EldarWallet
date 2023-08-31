@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.eldarwallet.R
 import com.example.eldarwallet.databinding.DialogCardRegistrationBinding
 import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.domain.model.Card
@@ -35,6 +37,7 @@ class CardRegistrationDialog: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeRegistrationStatus()
         onRegisterButton()
     }
 
@@ -46,10 +49,24 @@ class CardRegistrationDialog: DialogFragment() {
         )
     }
 
+    private fun observeRegistrationStatus() {
+        viewModel.registrationStatus.observe(viewLifecycleOwner) {
+            updateStatus(it)
+        }
+    }
+
+    private fun updateStatus(isValidRegistration: Boolean) {
+        if (isValidRegistration) {
+            Toast.makeText(requireContext(), getString(R.string.successful_card_registration),Toast.LENGTH_SHORT).show()
+            dismiss()
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.failed_card_registration),Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun onRegisterButton() {
         binding.registerButton.setOnClickListener {
             viewModel.registerCard(getCardFromData())
-            dismiss()
         }
     }
 

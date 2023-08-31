@@ -7,4 +7,6 @@ import androidx.room.PrimaryKey
 data class Account(
     @PrimaryKey val number: Long,
     var balance: Long = 0,
+    val ownerName: String,
+    val ownerLastname: String
 )

@@ -21,7 +21,7 @@ class CardViewModel(
 
     fun getCardsFromAccount(countNumber: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            getCards(countNumber).collect{ cards ->
+            getCards(countNumber).collect { cards ->
                 _cards.postValue(cards)
             }
         }
@@ -29,8 +29,26 @@ class CardViewModel(
 
     fun registerCard(card: Card) {
         viewModelScope.launch(Dispatchers.IO) {
-            saveCard(card)
-            _registrationStatus.postValue(true)
+            if (validateNameUser(card)) {
+                onCorrectValidationNameUser(card)
+            } else {
+                onCorrectInvalidationNameUser()
+            }
+        }
+    }
+
+    private fun onCorrectInvalidationNameUser() {
+        _registrationStatus.postValue(false)
+    }
+
+    private suspend fun onCorrectValidationNameUser(card: Card) {
+        saveCard(card)
+        _registrationStatus.postValue(true)
+    }
+
+    private fun validateNameUser(card: Card): Boolean {
+        return with(card) {
+            (ownerName == "Flor" && ownerLastname == "Perez")
         }
     }
 }

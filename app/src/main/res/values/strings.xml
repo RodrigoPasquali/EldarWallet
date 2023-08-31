@@ -12,4 +12,6 @@
     <string name="cvv">CVV</string>
     <string name="company_bank">Compañia/Banco</string>
     <string name="register">Registrar</string>
+    <string name="successful_card_registration">Se logro registrar la tarjeta con exito!</string>
+    <string name="failed_card_registration">Operacion Fallida: Los datos de la tarjeta no coincides con los del usuario</string>
 </resources>
