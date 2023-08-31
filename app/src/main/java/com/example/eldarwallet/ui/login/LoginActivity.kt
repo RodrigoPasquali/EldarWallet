@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.eldarwallet.R
 import com.example.eldarwallet.databinding.ActivityLoginBinding
 import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.ui.HomeActivity
@@ -49,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onFailureLogin() {
-        Toast.makeText(this, "Usuario y/o contraseña invalidas", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.invalid_login), Toast.LENGTH_SHORT).show()
     }
 
     private fun onLoginButtonClick() {
@@ -60,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.password.text.toString()
                 )
             } else {
-                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.complete_empty_fields), Toast.LENGTH_SHORT).show()
             }
         }
     }
