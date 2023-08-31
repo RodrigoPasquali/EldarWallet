@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onLoginButtonClick() {
         binding.loginButton.setOnClickListener {
-            if (checkForEmptyFields()) {
+            if (!checkForEmptyFields()) {
                 loginViewModel.tryLogin(
                     binding.email.text.toString(),
                     binding.password.text.toString()
