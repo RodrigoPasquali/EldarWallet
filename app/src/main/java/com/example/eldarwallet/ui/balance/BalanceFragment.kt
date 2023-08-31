@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.eldarwallet.MyApp
 import com.example.eldarwallet.databinding.FragmentBalanceBinding
 import com.example.eldarwallet.di.Injection
 
@@ -32,7 +33,7 @@ class BalanceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observers()
 
-        balanceViewModel.getBalanceFromAccount(1000)
+        balanceViewModel.getBalanceFromAccount(MyApp.user.accountNumber)
     }
 
     private fun observers() {
@@ -42,6 +43,7 @@ class BalanceFragment : Fragment() {
     }
 
     private fun updateBalance(balance: Long?) {
+        binding.numeroCuenta.text = MyApp.user.accountNumber.toString()
         binding.balance.text = "$ " + balance.toString()
     }
 }

@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.eldarwallet.MyApp
 import com.example.eldarwallet.R
 import com.example.eldarwallet.databinding.DialogCardRegistrationBinding
 import com.example.eldarwallet.di.Injection
@@ -98,7 +99,7 @@ class CardRegistrationDialog : DialogFragment() {
         return with(binding) {
             Card(
                 cardNumber.text.toString().toLong(),
-                1000,
+                MyApp.user.accountNumber,
                 company.text.toString(),
                 securityCode.text.toString().toInt(),
                 expirationDate.text.toString(),

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+import com.example.eldarwallet.MyApp
 import com.example.eldarwallet.databinding.FragmentCardBinding
 import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.domain.model.Card
@@ -40,7 +41,7 @@ class CardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observers()
-        cardViewModel.getCardsFromAccount(1000)
+        cardViewModel.getCardsFromAccount(MyApp.user.accountNumber)
         setupAdapter()
         onAddCardButtonClick()
     }
@@ -58,7 +59,7 @@ class CardFragment : Fragment() {
 
     private fun onRegistrationCardObserver() {
         cardViewModel.registrationStatus.observe(viewLifecycleOwner) {
-            cardViewModel.getCardsFromAccount(1000)
+            cardViewModel.getCardsFromAccount(MyApp.user.accountNumber)
         }
     }
 
