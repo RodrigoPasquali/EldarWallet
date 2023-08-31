@@ -44,6 +44,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:drawableStartCompat="@drawable/add_icon" />
+            app:drawableStartCompat="@drawable/add_icon"
+            android:gravity="center"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
