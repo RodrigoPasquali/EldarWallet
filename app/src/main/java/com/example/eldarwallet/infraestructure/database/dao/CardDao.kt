@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.eldarwallet.domain.model.Card
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -12,5 +13,5 @@ interface CardDao {
     fun insert(card: Card)
 
     @Query("select * from card_table where accountNumber = :number")
-    fun getCards(number: Long): List<Card>
+    fun getCards(number: Long): Flow<List<Card>>
 }

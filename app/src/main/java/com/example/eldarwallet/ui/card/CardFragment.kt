@@ -27,7 +27,10 @@ class CardFragment : Fragment() {
         cardViewModel =
             ViewModelProvider(
                 this,
-                CardViewModelFactory(Injection.provideGetCards(requireActivity().applicationContext))
+                CardViewModelFactory(
+                    Injection.provideGetCards(requireActivity().applicationContext),
+                    Injection.provideSaveCard(requireActivity().applicationContext)
+                )
             ).get(CardViewModel::class.java)
 
         return binding.root
@@ -43,8 +46,19 @@ class CardFragment : Fragment() {
     }
 
     private fun observers() {
+        onGetCardsObserver()
+        onRegistrationCardObserver()
+    }
+
+    private fun onGetCardsObserver() {
         cardViewModel.cards.observe(viewLifecycleOwner) {
             updateCards(it)
+        }
+    }
+
+    private fun onRegistrationCardObserver() {
+        cardViewModel.registrationStatus.observe(viewLifecycleOwner) {
+            cardViewModel.getCardsFromAccount(1001)
         }
     }
 

@@ -11,4 +11,6 @@ data class Card(
     val company: String,
     val securityCode: Int,
     val expirationDate: String,
+    val ownerName: String,
+    val ownerLastname: String,
 )
