@@ -78,12 +78,12 @@
         app:layout_constraintTop_toBottomOf="@id/expirationDate" />
 
     <EditText
-        android:id="@+id/bank"
+        android:id="@+id/company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:autofillHints=""
-        android:hint="@string/bank"
+        android:hint="@string/company_bank"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +97,6 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bank"
+        app:layout_constraintTop_toBottomOf="@id/company"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
