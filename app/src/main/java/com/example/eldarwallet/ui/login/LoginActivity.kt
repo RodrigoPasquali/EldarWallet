@@ -54,7 +54,20 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onLoginButtonClick() {
         binding.loginButton.setOnClickListener {
-            loginViewModel.tryLogin(binding.email.text.toString(), binding.password.text.toString())
+            if (checkForEmptyFields()) {
+                loginViewModel.tryLogin(
+                    binding.email.text.toString(),
+                    binding.password.text.toString()
+                )
+            } else {
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun checkForEmptyFields(): Boolean {
+        return with(binding) {
+            password.text!!.isEmpty() || email.text.isEmpty()
         }
     }
 
