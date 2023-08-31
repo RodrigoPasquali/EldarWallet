@@ -7,18 +7,21 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.eldarwallet.domain.model.Account
 import com.example.eldarwallet.domain.model.Card
+import com.example.eldarwallet.domain.model.User
 import com.example.eldarwallet.infraestructure.database.dao.AccountDao
 import com.example.eldarwallet.infraestructure.database.dao.CardDao
+import com.example.eldarwallet.infraestructure.database.dao.UserDao
 import java.util.concurrent.Executors
 
 @Database(
-    entities = [Account::class, Card::class],
+    entities = [Account::class, Card::class, User::class],
     version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getAccountDao(): AccountDao
     abstract fun getCardDao(): CardDao
+    abstract fun getUserDao(): UserDao
 
     companion object {
         private var instance: AppDatabase? = null
@@ -31,6 +34,9 @@ abstract class AppDatabase : RoomDatabase() {
                             super.onCreate(db)
 
                             Executors.newSingleThreadExecutor().execute() {
+                                instance?.getUserDao()?.create(User("flor@mail.com", "flor123", 1000))
+                                instance?.getUserDao()?.create(User("juan@mail.com", "juan123", 1001))
+
                                 instance?.getAccountDao()?.insert(Account(1000, 123456,"Flor", "Perez"))
                                 instance?.getAccountDao()?.insert(Account(1001, 987654, "Juan", "Gonzalez"))
 
