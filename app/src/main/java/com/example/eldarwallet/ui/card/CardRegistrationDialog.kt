@@ -39,7 +39,8 @@ class CardRegistrationDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeRegistrationStatus()
-        onRegisterButton()
+        onRegisterButtonClick()
+        onCloseButtonClick()
     }
 
     override fun onStart() {
@@ -73,7 +74,7 @@ class CardRegistrationDialog : DialogFragment() {
         }
     }
 
-    private fun onRegisterButton() {
+    private fun onRegisterButtonClick() {
         binding.registerButton.setOnClickListener {
             if (!checkForEmptyFields()) {
                 viewModel.registerCard(getCardFromData())
@@ -84,6 +85,12 @@ class CardRegistrationDialog : DialogFragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
+    }
+
+    private fun onCloseButtonClick() {
+        binding.closeButton.setOnClickListener {
+            dismiss()
         }
     }
 
