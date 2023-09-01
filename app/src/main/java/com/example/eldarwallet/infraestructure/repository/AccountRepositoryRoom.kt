@@ -4,6 +4,7 @@ import com.example.eldarwallet.domain.model.Account
 import com.example.eldarwallet.domain.repository.AccountRepository
 import com.example.eldarwallet.infraestructure.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class AccountRepositoryRoom(database: AppDatabase) : AccountRepository {
@@ -21,7 +22,7 @@ class AccountRepositoryRoom(database: AppDatabase) : AccountRepository {
         }
     }
 
-    override suspend fun getBalanceFromAccount(accountNumber: Long): Long {
+    override suspend fun getBalanceFromAccount(accountNumber: Long): Flow<Long> {
         return withContext(Dispatchers.IO) {
             accountDao.getBalanceFromAccount(accountNumber)
         }

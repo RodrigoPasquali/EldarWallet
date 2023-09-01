@@ -16,7 +16,9 @@ class BalanceViewModel(
 
     fun getBalanceFromAccount(accountNumber: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            _balance.postValue(getBalance(accountNumber))
+            getBalance(accountNumber).collect { amountBalance ->
+                _balance.postValue(amountBalance)
+            }
         }
     }
 }

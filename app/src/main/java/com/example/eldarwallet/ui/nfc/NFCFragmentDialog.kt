@@ -98,6 +98,7 @@ class NFCFragmentDialog : DialogFragment() {
     private fun onPaymentButtonClick() {
         binding.paymentButton.setOnClickListener {
             viewModel.makeNFCPayment(MyApp.userSession.accountNumber, binding.amount.text.toString().toLong())
+            dismiss()
         }
     }
 
