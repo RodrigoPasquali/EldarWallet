@@ -48,7 +48,7 @@
         tools:layout="@layout/fragment_qr_code"/>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/paymentContainer"
+        android:id="@+id/nfcPaymentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="10dp"

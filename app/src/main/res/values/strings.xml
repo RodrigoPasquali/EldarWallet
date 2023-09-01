@@ -24,4 +24,7 @@
     <string name="generate_qr_code_with">Codigo Qr Generado con:</string>
     <string name="generate_qr_code">Generar codigo QR</string>
     <string name="make_nfc_payment">Realizar pago NFC</string>
+    <string name="select_card_pay">Seleccione tarjeta para pagar:</string>
+    <string name="amount">$ 0</string>
+    <string name="pay">Pagar</string>
 </resources>
