@@ -9,12 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.eldarwallet.domain.action.GenerateQR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 
 class QRCodeViewModel(
     private val generateQR: GenerateQR
 ) : ViewModel() {
-    private var _qrImage = MutableLiveData<Bitmap>()
-    var qrImage: LiveData<Bitmap> = _qrImage
+    private var _qrImage = MutableLiveData<Bitmap?>()
+    var qrImage: LiveData<Bitmap?> = _qrImage
 
 
     fun generateQrCode(value: String) {
@@ -22,12 +23,21 @@ class QRCodeViewModel(
             try {
                 val response = generateQR(value)
                 if (response.isSuccessful) {
-                    val qrImage = BitmapFactory.decodeStream(response.body()?.byteStream())
-                    _qrImage.postValue(qrImage)
+                    onGenerateSuccessfulQr(response.body())
                 } else {
+                    onError()
                 }
             } catch (e: Exception) {
+                onError()
             }
         }
+    }
+
+    private fun onError() {
+        _qrImage.postValue(null)
+    }
+
+    private fun onGenerateSuccessfulQr(body: ResponseBody?) {
+        _qrImage.postValue(BitmapFactory.decodeStream(body?.byteStream()))
     }
 }

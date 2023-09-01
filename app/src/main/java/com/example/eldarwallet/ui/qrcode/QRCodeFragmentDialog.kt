@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.eldarwallet.MyApp
+import com.example.eldarwallet.R
 import com.example.eldarwallet.databinding.DialogGenerateQrCodeBinding
 import com.example.eldarwallet.di.Injection
 
@@ -42,8 +44,17 @@ class QRCodeFragmentDialog : DialogFragment() {
 
     private fun observeQrImage(){
         viewModel.qrImage.observe(viewLifecycleOwner) {
-            onQrCodeGenerateSuccessful(it)
+            if (it != null) {
+                onQrCodeGenerateSuccessful(it)
+            } else {
+                onQrCodeGenerateError()
+            }
         }
+    }
+
+    private fun onQrCodeGenerateError() {
+        binding.qrContainer.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background))
+        binding.generateCodeTextValue.text = ""
     }
 
     private fun onQrCodeGenerateSuccessful(qr: Bitmap) {
