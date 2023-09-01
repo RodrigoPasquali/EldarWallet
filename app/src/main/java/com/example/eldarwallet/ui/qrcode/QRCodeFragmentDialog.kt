@@ -37,7 +37,7 @@ class QRCodeFragmentDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loadingBar.visibility = View.VISIBLE
+        showLoadingBar(true)
         observeQrImage()
         generateQrCode()
         onCloseButtonClick()
@@ -45,7 +45,7 @@ class QRCodeFragmentDialog : DialogFragment() {
 
     private fun observeQrImage(){
         viewModel.qrImage.observe(viewLifecycleOwner) {
-            binding.loadingBar.visibility = View.GONE
+            showLoadingBar(false)
 
             if (it != null) {
                 onQrCodeGenerateSuccessful(it)
@@ -84,6 +84,14 @@ class QRCodeFragmentDialog : DialogFragment() {
     private fun onCloseButtonClick() {
         binding.closeButton.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun showLoadingBar(show: Boolean) {
+        if (show) {
+            binding.loadingBar.visibility = View.VISIBLE
+        } else {
+            binding.loadingBar.visibility = View.INVISIBLE
         }
     }
 
