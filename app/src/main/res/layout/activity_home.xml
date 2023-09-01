@@ -44,6 +44,20 @@
         app:layout_constraintTop_toBottomOf="@id/cardsContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.35"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_percent="0.49"
         tools:layout="@layout/fragment_qr_code"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/paymentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:name="com.example.eldarwallet.ui.nfc.NFCPaymentFragment"
+        app:layout_constraintStart_toEndOf="@id/qrCodeContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardsContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintWidth_percent="0.49"
+        tools:layout="@layout/fragment_nfc_payment"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
