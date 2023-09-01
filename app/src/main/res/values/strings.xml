@@ -29,4 +29,5 @@
     <string name="pay">Pagar</string>
     <string name="payment_successful">Se realizo el pago con exito</string>
     <string name="payment_failure">No se pudo realizar el pago</string>
+    <string name="please_enter_amount_to_pay">Por favor introduzca el monto a pagar</string>
 </resources>

@@ -62,7 +62,7 @@ class NFCFragmentDialog : DialogFragment() {
     }
 
     private fun updatePaymentStatus(isSuccess: Boolean) {
-        var stateText: String
+        val stateText: String
         if (isSuccess) {
             stateText = getString(R.string.payment_successful)
             dismiss()
@@ -126,11 +126,28 @@ class NFCFragmentDialog : DialogFragment() {
         binding.paymentButton.setOnClickListener {
             showLoadingBar(true)
 
-            viewModel.makeNFCPayment(
-                MyApp.userSession.accountNumber,
-                binding.amount.text.toString().toLong()
-            )
+            if (!checkAmount()){
+                onValidAmount()
+            } else {
+                onInvalidAmount()
+            }
         }
+    }
+
+    private fun onValidAmount() {
+        viewModel.makeNFCPayment(
+            MyApp.userSession.accountNumber,
+            binding.amount.text.toString().toLong()
+        )
+    }
+
+    private fun onInvalidAmount() {
+        Toast.makeText(requireActivity().applicationContext, getString(R.string.please_enter_amount_to_pay), Toast.LENGTH_SHORT).show()
+        showLoadingBar(false)
+    }
+
+    private fun checkAmount(): Boolean {
+        return binding.amount.text.isEmpty()
     }
 
     companion object {
