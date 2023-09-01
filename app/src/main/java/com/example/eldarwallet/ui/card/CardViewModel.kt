@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.eldarwallet.MyApp
 import com.example.eldarwallet.domain.action.GetCards
 import com.example.eldarwallet.domain.action.SaveCard
 import com.example.eldarwallet.domain.model.Card
@@ -48,7 +49,7 @@ class CardViewModel(
 
     private fun validateNameUser(card: Card): Boolean {
         return with(card) {
-            (ownerName == "Flor" && ownerLastname == "Perez")
+            (ownerName == MyApp.user.ownerName && ownerLastname == MyApp.user.ownerLastname)
         }
     }
 }

@@ -6,7 +6,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "account_table")
 data class Account(
     @PrimaryKey val number: Long,
-    var balance: Long = 0,
-    val ownerName: String,
-    val ownerLastname: String
+    var balance: Long = 0
 )
