@@ -1,0 +1,23 @@
+package com.example.eldarwallet.infraestructure.remote.service
+
+import okhttp3.ResponseBody
+import retrofit2.Response
+import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.http.Query
+
+interface QrCodeService {
+    @Headers(
+        CONTENT_TYPE,
+        X_RAPIDAPI_KEY,
+        X_RAPIDAPI_HOST
+    )
+    @POST("qr-code")
+    suspend fun generateQR(@Query("content") value: String): Response<ResponseBody>
+
+    private companion object {
+        const val CONTENT_TYPE = "content-type: application/x-www-form-urlencoded"
+        const val X_RAPIDAPI_KEY = "X-RapidAPI-Key: e817f9178amshfdbcf534d3a4013p1c6a38jsn27be10b0d3e1"
+        const val X_RAPIDAPI_HOST = "X-RapidAPI-Host: neutrinoapi-qr-code.p.rapidapi.com"
+    }
+}

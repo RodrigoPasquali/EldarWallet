@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardsContainer"
         app:layout_constraintHeight_percent="0.2"
         tools:layout="@layout/fragment_balance"/>
 
@@ -29,6 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/balanceContainer"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintBottom_toTopOf="@id/qrCodeContainer"
+        app:layout_constraintHeight_percent="0.4"
         tools:layout="@layout/fragment_card"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/qrCodeContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:name="com.example.eldarwallet.ui.qrcode.QrCodeFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardsContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintWidth_percent="0.5"
+        tools:layout="@layout/fragment_qr_code"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

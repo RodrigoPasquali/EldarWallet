@@ -21,4 +21,6 @@
     <string name="login">Login</string>
     <string name="invalid_login">Usuario y/o contraseña invalidas</string>
     <string name="complete_empty_fields">Por favor complete todos los campos</string>
+    <string name="generate_qr_code_with">Codigo Qr Generado con:</string>
+    <string name="generate_qr_code">Generar codigo QR</string>
 </resources>
