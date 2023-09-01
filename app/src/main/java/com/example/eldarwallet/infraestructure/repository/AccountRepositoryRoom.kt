@@ -15,9 +15,15 @@ class AccountRepositoryRoom(database: AppDatabase) : AccountRepository {
         }
     }
 
-    override suspend fun getBalanceFromAccount(number: Long): Long {
+    override suspend fun saveBalance(accountNumber: Long, amount: Long) {
+        withContext(Dispatchers.IO) {
+            accountDao.insertAmount(accountNumber, amount)
+        }
+    }
+
+    override suspend fun getBalanceFromAccount(accountNumber: Long): Long {
         return withContext(Dispatchers.IO) {
-            accountDao.getBalanceFromAccount(number)
+            accountDao.getBalanceFromAccount(accountNumber)
         }
     }
 }

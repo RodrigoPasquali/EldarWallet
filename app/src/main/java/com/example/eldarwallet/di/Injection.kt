@@ -6,6 +6,7 @@ import com.example.eldarwallet.domain.action.GetBalance
 import com.example.eldarwallet.domain.action.GetCards
 import com.example.eldarwallet.domain.action.GetUser
 import com.example.eldarwallet.domain.action.Login
+import com.example.eldarwallet.domain.action.MakePayment
 import com.example.eldarwallet.domain.action.SaveCard
 import com.example.eldarwallet.domain.repository.AccountRepository
 import com.example.eldarwallet.domain.repository.CardRepository
@@ -31,6 +32,8 @@ object Injection {
     fun provideGetUser(context: Context) = GetUser(provideUserRepository(context))
 
     fun provideGenerateQR() = GenerateQR(provideQRCodeRepository())
+
+    fun provideMakePayment(context: Context) = MakePayment(provideAccountRepositoryRoom(context))
 
     private fun provideAccountRepositoryRoom(context: Context): AccountRepository {
         return AccountRepositoryRoom(provideAppDataBase(context))

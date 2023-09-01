@@ -13,4 +13,7 @@ interface AccountDao {
 
     @Query("select balance from account_table where number = :number")
     fun getBalanceFromAccount(number: Long): Long
+
+    @Query("UPDATE account_table SET balance =:amount where number = :accountNumber")
+    fun insertAmount(accountNumber: Long, amount: Long)
 }

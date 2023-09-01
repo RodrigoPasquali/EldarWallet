@@ -13,7 +13,6 @@ import com.example.eldarwallet.di.Injection
 import com.example.eldarwallet.domain.model.Card
 import com.example.eldarwallet.domain.model.CardBrand
 
-
 class NFCFragmentDialog : DialogFragment() {
     private lateinit var binding: DialogNfcBinding
     private lateinit var viewModel: NFCViewModel
@@ -29,7 +28,10 @@ class NFCFragmentDialog : DialogFragment() {
         viewModel =
             ViewModelProvider(
                 this,
-                NFCViewModelFactory(Injection.provideGetCards(requireActivity().applicationContext))
+                NFCViewModelFactory(
+                    Injection.provideGetCards(requireActivity().applicationContext),
+                    Injection.provideMakePayment(requireContext().applicationContext)
+                )
             ).get(NFCViewModel::class.java)
 
         return binding.root
@@ -41,6 +43,7 @@ class NFCFragmentDialog : DialogFragment() {
         showLoadingBar(true)
         onGetCardsObserver()
         viewModel.getCardsFromAccount(MyApp.userSession.accountNumber)
+        onPaymentButtonClick()
         onCloseButtonClick()
     }
 
@@ -67,7 +70,9 @@ class NFCFragmentDialog : DialogFragment() {
         val cardsDataSpinner = ArrayList<String>()
 
         cards.forEach { card ->
-            cardsDataSpinner.add(getCardBrand(card.number) + "   N°" + card.number.toString().takeLast(4))
+            cardsDataSpinner.add(
+                getCardBrand(card.number) + "   N°" + card.number.toString().takeLast(4)
+            )
         }
 
         return cardsDataSpinner
@@ -88,6 +93,11 @@ class NFCFragmentDialog : DialogFragment() {
             binding.loadingBar.visibility = View.VISIBLE
         } else {
             binding.loadingBar.visibility = View.INVISIBLE
+        }
+    }
+    private fun onPaymentButtonClick() {
+        binding.paymentButton.setOnClickListener {
+            viewModel.makeNFCPayment(MyApp.userSession.accountNumber, binding.amount.text.toString().toLong())
         }
     }
 
