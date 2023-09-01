@@ -41,15 +41,18 @@ abstract class AppDatabase : RoomDatabase() {
                             Executors.newSingleThreadExecutor().execute() {
                                 instance?.getUserDao()?.create(User("flor@mail.com", "flor123", 1000,"Flor", "Perez"))
                                 instance?.getUserDao()?.create(User("juan@mail.com", "juan123", 1001, "Juan", "Gonzalez"))
+                                instance?.getUserDao()?.create(User("a", "a", 9999, "a", "a"))
 
                                 instance?.getAccountDao()?.insert(Account(1000, 123456))
                                 instance?.getAccountDao()?.insert(Account(1001, 987654))
+                                instance?.getAccountDao()?.insert(Account(9999, 999999999))
 
                                 instance?.getCardDao()?.insert(Card(4100000000000000, 1001, "Santander", 123, "01/23", "Juan", "Gonzalez"))
                                 instance?.getCardDao()?.insert(Card(4200000000000000, 1000, "Galicia", 234, "02/23", "Flor", "Perez"))
                                 instance?.getCardDao()?.insert(Card(5100000000000000, 1000, "BBVA", 345, "03/23", "Flor", "Perez"))
                                 instance?.getCardDao()?.insert(Card(5200000000000000, 1001, "Nacion", 456, "04/23", "Juan", "Gonzalez"))
                                 instance?.getCardDao()?.insert(Card(3100000000000000, 1001, "Provincia", 567, "05/23", "Juan", "Gonzalez"))
+                                instance?.getCardDao()?.insert(Card(9999999999999999, 9999, "XXXXXX", 999, "99/99", "a", "a"))
                             }
                         }
                     })
