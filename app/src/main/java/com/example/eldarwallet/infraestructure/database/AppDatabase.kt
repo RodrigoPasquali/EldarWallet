@@ -11,6 +11,8 @@ import com.example.eldarwallet.domain.model.User
 import com.example.eldarwallet.infraestructure.database.dao.AccountDao
 import com.example.eldarwallet.infraestructure.database.dao.CardDao
 import com.example.eldarwallet.infraestructure.database.dao.UserDao
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import java.util.concurrent.Executors
 
 @Database(
@@ -27,7 +29,10 @@ abstract class AppDatabase : RoomDatabase() {
         private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
+
             if (instance == null) {
+                val factory = SupportFactory(SQLiteDatabase.getBytes("R@s5P4ras3VeryL0n9".toCharArray()))
+
                 instance = Room.databaseBuilder(context, AppDatabase::class.java, "EldarWallet")
                     .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
@@ -48,6 +53,7 @@ abstract class AppDatabase : RoomDatabase() {
                             }
                         }
                     })
+                    .openHelperFactory(factory)
                     .fallbackToDestructiveMigration()
                     .build()
             }
