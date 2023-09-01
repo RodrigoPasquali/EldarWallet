@@ -40,6 +40,7 @@ class CardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showLoadingBar(true)
         observers()
         cardViewModel.getCardsFromAccount(MyApp.user.accountNumber)
         setupAdapter()
@@ -53,6 +54,7 @@ class CardFragment : Fragment() {
 
     private fun onGetCardsObserver() {
         cardViewModel.cards.observe(viewLifecycleOwner) {
+            showLoadingBar(false)
             updateCards(it)
         }
     }
@@ -103,6 +105,14 @@ class CardFragment : Fragment() {
     private fun onAddCardButtonClick(){
         binding.addCardButton.setOnClickListener {
             CardRegistrationDialog.newInstance().show(childFragmentManager, "Dialog")
+        }
+    }
+
+    private fun showLoadingBar(show: Boolean) {
+        if (show) {
+            binding.loadingBar.visibility = View.VISIBLE
+        } else {
+            binding.loadingBar.visibility = View.INVISIBLE
         }
     }
 }
