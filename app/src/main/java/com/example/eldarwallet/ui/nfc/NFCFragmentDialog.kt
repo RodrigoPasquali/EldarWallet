@@ -40,6 +40,7 @@ class NFCFragmentDialog : DialogFragment() {
 
         onGetCardsObserver()
         viewModel.getCardsFromAccount(MyApp.userSession.accountNumber)
+        onCloseButtonClick()
     }
 
     private fun onGetCardsObserver() {
@@ -72,6 +73,12 @@ class NFCFragmentDialog : DialogFragment() {
 
     private fun getCardBrand(cardNumber: Long): String {
         return CardBrand.getBrand(cardNumber).toString().replace("_", " ")
+    }
+
+    private fun onCloseButtonClick() {
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
     }
 
     companion object {
