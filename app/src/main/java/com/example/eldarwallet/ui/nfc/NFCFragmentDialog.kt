@@ -38,6 +38,7 @@ class NFCFragmentDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showLoadingBar(true)
         onGetCardsObserver()
         viewModel.getCardsFromAccount(MyApp.userSession.accountNumber)
         onCloseButtonClick()
@@ -45,6 +46,7 @@ class NFCFragmentDialog : DialogFragment() {
 
     private fun onGetCardsObserver() {
         viewModel.cards.observe(viewLifecycleOwner) { cards ->
+            showLoadingBar(false)
             cardList = cards
             setupCardSpinner()
         }
@@ -78,6 +80,14 @@ class NFCFragmentDialog : DialogFragment() {
     private fun onCloseButtonClick() {
         binding.closeButton.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun showLoadingBar(show: Boolean) {
+        if (show) {
+            binding.loadingBar.visibility = View.VISIBLE
+        } else {
+            binding.loadingBar.visibility = View.INVISIBLE
         }
     }
 
