@@ -27,4 +27,6 @@
     <string name="select_card_pay">Seleccione tarjeta para pagar:</string>
     <string name="amount">$ 0</string>
     <string name="pay">Pagar</string>
+    <string name="payment_successful">Se realizo el pago con exito</string>
+    <string name="payment_failure">No se pudo realizar el pago</string>
 </resources>

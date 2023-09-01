@@ -9,8 +9,8 @@ class MakePayment(private val repository: AccountRepository) {
     suspend operator fun invoke(
         accountNumber: Long,
         paymentAmount: Long
-    ) {
-        withContext(Dispatchers.IO) {
+    ): Boolean {
+        return withContext(Dispatchers.IO) {
             val newBalanceAmount: Long
             val balanceAmount = repository.getBalanceFromAccount(accountNumber).first()
 
@@ -18,8 +18,9 @@ class MakePayment(private val repository: AccountRepository) {
 
             if (newBalanceAmount > 0L) {
                 repository.saveBalance(accountNumber, newBalanceAmount)
+                true
             } else {
-
+                false
             }
         }
     }
