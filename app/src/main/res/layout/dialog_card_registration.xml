@@ -33,6 +33,7 @@
         android:autofillHints=""
         android:hint="@string/name"
         android:inputType="text"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginText" />
@@ -45,6 +46,7 @@
         android:autofillHints=""
         android:hint="@string/lastname"
         android:inputType="text"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,21 +60,10 @@
         android:autofillHints=""
         android:hint="@string/card_number"
         android:inputType="number"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lastname" />
-
-    <EditText
-        android:id="@+id/expirationDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:autofillHints=""
-        android:hint="@string/expiration_date"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardNumber" />
 
     <EditText
         android:id="@+id/securityCode"
@@ -82,9 +73,10 @@
         android:autofillHints=""
         android:hint="@string/cvv"
         android:inputType="number"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/expirationDate" />
+        app:layout_constraintTop_toBottomOf="@id/cardNumber" />
 
     <EditText
         android:id="@+id/company"
@@ -94,9 +86,43 @@
         android:autofillHints=""
         android:hint="@string/company_bank"
         android:inputType="text"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/securityCode" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/expiration_date"
+        android:textColor="@color/hint_color"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:layout_marginStart="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/company" />
+
+    <Spinner
+        android:id="@+id/monthExpirationDate"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/month_items"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@id/yearExpirationDate"
+        app:layout_constraintTop_toBottomOf="@id/company" />
+
+    <Spinner
+        android:id="@+id/yearExpirationDate"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/years_items"
+        android:layout_marginStart="10dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/company" />
 
     <Button
         android:id="@+id/registerButton"
@@ -106,6 +132,6 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/company"
+        app:layout_constraintTop_toBottomOf="@id/yearExpirationDate"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

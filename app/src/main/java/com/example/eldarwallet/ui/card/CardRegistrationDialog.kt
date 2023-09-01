@@ -40,6 +40,7 @@ class CardRegistrationDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeRegistrationStatus()
+        setupExpirationDate()
         onRegisterButtonClick()
         onCloseButtonClick()
     }
@@ -55,6 +56,43 @@ class CardRegistrationDialog : DialogFragment() {
     private fun observeRegistrationStatus() {
         viewModel.registrationStatus.observe(viewLifecycleOwner) {
             updateStatus(it)
+        }
+    }
+
+    private fun setupExpirationDate() {
+        setupMonthSpinner()
+        setupYearSpinner()
+    }
+
+    private fun setupMonthSpinner() {
+        val months = resources.getStringArray(R.array.month_items)
+
+        activity?.applicationContext?.let {
+            ArrayDateAdapter(
+                it,
+                android.R.layout.simple_spinner_item,
+                months,
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                binding.monthExpirationDate.adapter = adapter
+                binding.monthExpirationDate.setSelection(months.size - 1)
+            }
+        }
+    }
+
+    private fun setupYearSpinner() {
+        val years = resources.getStringArray(R.array.years_items)
+
+        activity?.applicationContext?.let {
+            ArrayDateAdapter(
+                it,
+                android.R.layout.simple_spinner_item,
+                years,
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                binding.yearExpirationDate.adapter = adapter
+                binding.yearExpirationDate.setSelection(years.size - 1)
+            }
         }
     }
 
@@ -102,11 +140,15 @@ class CardRegistrationDialog : DialogFragment() {
                 MyApp.userSession.accountNumber,
                 company.text.toString(),
                 securityCode.text.toString().toInt(),
-                expirationDate.text.toString(),
+                getExpirationDate(),
                 name.text.toString(),
                 lastname.text.toString()
             )
         }
+    }
+
+    private fun getExpirationDate(): String {
+        return binding.monthExpirationDate.selectedItem.toString() + "/" + binding.yearExpirationDate.selectedItem.toString()
     }
 
     private fun checkForEmptyFields(): Boolean {
@@ -114,9 +156,10 @@ class CardRegistrationDialog : DialogFragment() {
             cardNumber.text.isEmpty()
                     || company.text.isEmpty()
                     || securityCode.text.isEmpty()
-                    || expirationDate.text.isEmpty()
                     || name.text.isEmpty()
-                    ||lastname.text.isEmpty()
+                    || lastname.text.isEmpty()
+                    || (monthExpirationDate.selectedItem.toString() == "Mes")
+                    || (yearExpirationDate.selectedItem.toString() == "Año")
         }
     }
 

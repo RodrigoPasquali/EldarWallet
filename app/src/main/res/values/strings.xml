@@ -8,7 +8,7 @@
     <string name="name">Nombre</string>
     <string name="lastname">Apellido</string>
     <string name="card_number">Nº Tarjeta</string>
-    <string name="expiration_date">Fecha de vencimiento</string>
+    <string name="expiration_date">Expiracion</string>
     <string name="cvv">CVV</string>
     <string name="company_bank">Compañia/Banco</string>
     <string name="register">Registrar</string>
