@@ -33,7 +33,12 @@ class LoginViewModel(
 
     private suspend fun onSuccessfulLogin(email: String) {
         _loginSuccessful.postValue(true)
-        MyApp.user = getUser(email)
+
+        with(getUser(email)) {
+            MyApp.userSession.ownerName = ownerName
+            MyApp.userSession.ownerLastname = ownerLastname
+            MyApp.userSession.accountNumber = accountNumber
+        }
     }
 
     private fun onFailureLogin() {

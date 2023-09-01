@@ -49,7 +49,7 @@ class CardViewModel(
 
     private fun validateNameUser(card: Card): Boolean {
         return with(card) {
-            (ownerName == MyApp.user.ownerName && ownerLastname == MyApp.user.ownerLastname)
+            (ownerName == MyApp.userSession.ownerName && ownerLastname == MyApp.userSession.ownerLastname)
         }
     }
 }

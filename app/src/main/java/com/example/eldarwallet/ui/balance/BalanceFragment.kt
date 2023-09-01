@@ -33,7 +33,7 @@ class BalanceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observers()
 
-        balanceViewModel.getBalanceFromAccount(MyApp.user.accountNumber)
+        balanceViewModel.getBalanceFromAccount(MyApp.userSession.accountNumber)
     }
 
     private fun observers() {
@@ -43,7 +43,7 @@ class BalanceFragment : Fragment() {
     }
 
     private fun updateBalance(balance: Long?) {
-        binding.numeroCuenta.text = MyApp.user.accountNumber.toString()
+        binding.numeroCuenta.text = MyApp.userSession.accountNumber.toString()
         binding.balance.text = "$ " + balance.toString()
     }
 }

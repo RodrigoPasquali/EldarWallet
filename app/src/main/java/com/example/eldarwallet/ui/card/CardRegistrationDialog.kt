@@ -99,7 +99,7 @@ class CardRegistrationDialog : DialogFragment() {
         return with(binding) {
             Card(
                 cardNumber.text.toString().toLong(),
-                MyApp.user.accountNumber,
+                MyApp.userSession.accountNumber,
                 company.text.toString(),
                 securityCode.text.toString().toInt(),
                 expirationDate.text.toString(),

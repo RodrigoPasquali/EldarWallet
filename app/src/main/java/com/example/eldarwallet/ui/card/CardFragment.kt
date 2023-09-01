@@ -42,7 +42,7 @@ class CardFragment : Fragment() {
 
         showLoadingBar(true)
         observers()
-        cardViewModel.getCardsFromAccount(MyApp.user.accountNumber)
+        cardViewModel.getCardsFromAccount(MyApp.userSession.accountNumber)
         setupAdapter()
         onAddCardButtonClick()
     }
@@ -61,7 +61,7 @@ class CardFragment : Fragment() {
 
     private fun onRegistrationCardObserver() {
         cardViewModel.registrationStatus.observe(viewLifecycleOwner) {
-            cardViewModel.getCardsFromAccount(MyApp.user.accountNumber)
+            cardViewModel.getCardsFromAccount(MyApp.userSession.accountNumber)
         }
     }
 

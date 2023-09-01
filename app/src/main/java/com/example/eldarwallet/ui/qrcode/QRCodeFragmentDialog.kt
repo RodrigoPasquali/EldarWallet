@@ -70,7 +70,7 @@ class QRCodeFragmentDialog : DialogFragment() {
     }
 
     private fun generateValueForQRCode(): String{
-        return MyApp.user.ownerName + MyApp.user.ownerLastname
+        return MyApp.userSession.ownerName + MyApp.userSession.ownerLastname
     }
 
     override fun onStart() {
