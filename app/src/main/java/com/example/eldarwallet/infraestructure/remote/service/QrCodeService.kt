@@ -17,7 +17,7 @@ interface QrCodeService {
 
     private companion object {
         const val CONTENT_TYPE = "content-type: application/x-www-form-urlencoded"
-        const val X_RAPIDAPI_KEY = "X-RapidAPI-Key: e817f9178amshfdbcf534d3a4013p1c6a38jsn27be10b0d3e1"
+        const val X_RAPIDAPI_KEY = "X-RapidAPI-Key: 20a612ba96msheb1d56c6f858e46p1c35f8jsn4b5baca8e3f8"
         const val X_RAPIDAPI_HOST = "X-RapidAPI-Host: neutrinoapi-qr-code.p.rapidapi.com"
     }
 }
